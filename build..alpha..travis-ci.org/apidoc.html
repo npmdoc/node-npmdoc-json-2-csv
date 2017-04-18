@@ -1,0 +1,390 @@
+<div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a
+
+        href="https://github.com/mrodrig/json-2-csv"
+
+    >json-2-csv (v2.1.0)</a>
+</h1>
+<h4>A JSON to CSV and CSV to JSON converter that natively supports sub-documents and auto-generates the CSV heading.</h4>
+<div class="apidocSectionDiv"><a
+    href="#apidoc.tableOfContents"
+    id="apidoc.tableOfContents"
+><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.json-2-csv">module json-2-csv</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.json-2-csv.csv2json">
+            function <span class="apidocSignatureSpan">json-2-csv.</span>csv2json
+            <span class="apidocSignatureSpan">(csv, callback, opts)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.json-2-csv.json2csv">
+            function <span class="apidocSignatureSpan">json-2-csv.</span>json2csv
+            <span class="apidocSignatureSpan">(array, callback, opts)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">json-2-csv.</span>csv_2_json</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">json-2-csv.</span>json_2_csv</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.json-2-csv.csv2json">module json-2-csv.csv2json</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.json-2-csv.csv2json.csv2json">
+            function <span class="apidocSignatureSpan">json-2-csv.</span>csv2json
+            <span class="apidocSignatureSpan">(csv, callback, opts)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.json-2-csv.csv_2_json">module json-2-csv.csv_2_json</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.json-2-csv.csv_2_json.csv2json">
+            function <span class="apidocSignatureSpan">json-2-csv.csv_2_json.</span>csv2json
+            <span class="apidocSignatureSpan">(opts, data, callback)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.json-2-csv.json2csv">module json-2-csv.json2csv</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.json-2-csv.json2csv.json2csv">
+            function <span class="apidocSignatureSpan">json-2-csv.</span>json2csv
+            <span class="apidocSignatureSpan">(array, callback, opts)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.json-2-csv.json_2_csv">module json-2-csv.json_2_csv</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.json-2-csv.json_2_csv.json2csv">
+            function <span class="apidocSignatureSpan">json-2-csv.json_2_csv.</span>json2csv
+            <span class="apidocSignatureSpan">(opts, data, callback)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.json-2-csv" id="apidoc.module.json-2-csv">module json-2-csv</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.json-2-csv.csv2json" id="apidoc.element.json-2-csv.csv2json">
+        function <span class="apidocSignatureSpan">json-2-csv.</span>csv2json
+        <span class="apidocSignatureSpan">(csv, callback, opts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">csv2json = function (csv, callback, opts) {
+    // If this was promisified (callback and opts are swapped) then fix the argument order.
+    if (_.isObject(callback) &#x26;&#x26; !_.isFunction(callback)) {
+        var func = opts;
+        opts = callback;
+        callback = func;
+    }
+
+    buildOptions(opts, function (err, options) { // Build the options
+        if (err) {
+            return callback(err);
+        } else {
+            csv2Json.csv2json(options, csv, callback); // Call our internal csv2json function
+        }
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.json-2-csv.json2csv" id="apidoc.element.json-2-csv.json2csv">
+        function <span class="apidocSignatureSpan">json-2-csv.</span>json2csv
+        <span class="apidocSignatureSpan">(array, callback, opts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">json2csv = function (array, callback, opts) {
+    // If this was promisified (callback and opts are swapped) then fix the argument order.
+    if (_.isObject(callback) &#x26;&#x26; !_.isFunction(callback)) {
+        var func = opts;
+        opts = callback;
+        callback = func;
+    }
+
+    buildOptions(opts, function (err, options) { // Build the options
+        if (err) {
+            return callback(err);
+        } else {
+            json2Csv.json2csv(options, array, callback); // Call our internal json2csv function
+        }
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.json-2-csv.csv2json" id="apidoc.module.json-2-csv.csv2json">module json-2-csv.csv2json</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.json-2-csv.csv2json.csv2json" id="apidoc.element.json-2-csv.csv2json.csv2json">
+        function <span class="apidocSignatureSpan">json-2-csv.</span>csv2json
+        <span class="apidocSignatureSpan">(csv, callback, opts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">csv2json = function (csv, callback, opts) {
+    // If this was promisified (callback and opts are swapped) then fix the argument order.
+    if (_.isObject(callback) &#x26;&#x26; !_.isFunction(callback)) {
+        var func = opts;
+        opts = callback;
+        callback = func;
+    }
+
+    buildOptions(opts, function (err, options) { // Build the options
+        if (err) {
+            return callback(err);
+        } else {
+            csv2Json.csv2json(options, csv, callback); // Call our internal csv2json function
+        }
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.json-2-csv.csv_2_json" id="apidoc.module.json-2-csv.csv_2_json">module json-2-csv.csv_2_json</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.json-2-csv.csv_2_json.csv2json" id="apidoc.element.json-2-csv.csv_2_json.csv2json">
+        function <span class="apidocSignatureSpan">json-2-csv.csv_2_json.</span>csv2json
+        <span class="apidocSignatureSpan">(opts, data, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">csv2json = function (opts, data, callback) {
+    // If a callback wasn&#x27;t provided, throw an error
+    if (!callback) { throw new Error(constants.Errors.callbackRequired); }
+
+    // Shouldn&#x27;t happen, but just in case
+    if (!opts) { return callback(new Error(constants.Errors.optionsRequired)); }
+    options = opts; // Options were passed, set the global options value
+
+    // If we don&#x27;t receive data, report an error
+    if (!data) { return callback(new Error(constants.Errors.csv2json.cannotCallCsv2JsonOn + data + &#x27;.&#x27;)); }
+
+    // The data provided is not a string
+    if (!_.isString(data)) {
+        return callback(new Error(constants.Errors.csv2json.csvNotString)); // Report an error back to the caller
+    }
+
+    // Split the CSV into lines using the specified EOL option
+    var lines = data.split(options.DELIMITER.EOL),
+        json = convertCSV(lines, callback); // Retrieve the JSON document array
+    return callback(null, json); // Send the data back to the caller
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.json-2-csv.json2csv" id="apidoc.module.json-2-csv.json2csv">module json-2-csv.json2csv</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.json-2-csv.json2csv.json2csv" id="apidoc.element.json-2-csv.json2csv.json2csv">
+        function <span class="apidocSignatureSpan">json-2-csv.</span>json2csv
+        <span class="apidocSignatureSpan">(array, callback, opts)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">json2csv = function (array, callback, opts) {
+    // If this was promisified (callback and opts are swapped) then fix the argument order.
+    if (_.isObject(callback) &#x26;&#x26; !_.isFunction(callback)) {
+        var func = opts;
+        opts = callback;
+        callback = func;
+    }
+
+    buildOptions(opts, function (err, options) { // Build the options
+        if (err) {
+            return callback(err);
+        } else {
+            json2Csv.json2csv(options, array, callback); // Call our internal json2csv function
+        }
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.json-2-csv.json_2_csv" id="apidoc.module.json-2-csv.json_2_csv">module json-2-csv.json_2_csv</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.json-2-csv.json_2_csv.json2csv" id="apidoc.element.json-2-csv.json_2_csv.json2csv">
+        function <span class="apidocSignatureSpan">json-2-csv.json_2_csv.</span>json2csv
+        <span class="apidocSignatureSpan">(opts, data, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">json2csv = function (opts, data, callback) {
+    // If a callback wasn&#x27;t provided, throw an error
+    if (!callback) { throw new Error(constants.Errors.callbackRequired); }
+
+    // Shouldn&#x27;t happen, but just in case
+    if (!opts) { return callback(new Error(constants.Errors.optionsRequired)); }
+    options = opts; // Options were passed, set the global options value
+
+    // If we don&#x27;t receive data, report an error
+    if (!data) { return callback(new Error(constants.Errors.json2csv.cannotCallJson2CsvOn + data + &#x27;.&#x27;)); }
+
+    // If the data was not a single document or an array of documents
+    if (!_.isObject(data)) {
+        return callback(new Error(constants.Errors.json2csv.dataNotArrayOfDocuments));  // Report the error back to the caller
+    }
+    // Single document, not an array
+    else if (_.isObject(data) &#x26;&#x26; !data.length) {
+        data = [data]; // Convert to an array of the given document
+    }
+
+    // Retrieve the heading and then generate the CSV with the keys that are identified
+    generateHeading(data)
+        .then(_.partial(generateCsv, data))
+        .spread(function (csvHeading, csvData) {
+            // If the fields are supposed to be wrapped... (only perform this if we are actually prepending the header)
+            if (options.DELIMITER.WRAP &#x26;&#x26; options.PREPEND_HEADER) {
+                csvHeading = _.map(csvHeading, function(headingKey) {
+                    return options.DELIMITER.WRAP + headingKey + options.DELIMITER.WRAP;
+                });
+            }
+
+            if (options.TRIM_HEADER_FIELDS) {
+                csvHeading = _.map(csvHeading, function (headingKey) {
+                    return headingKey.trim();
+                });
+            }
+
+            // If we are prepending the header, then join the csvHeading fields
+            if (options.PREPEND_HEADER) {
+                csvHeading = csvHeading.join(options.DELIMITER.FIELD);
+            }
+
+            // If we are prepending the header, then join the header and data by EOL, otherwise just return the data
+            return callback(null, options.PREPEND_HEADER ? csvHeading + options.DELIMITER.EOL + csvData : csvData);
+        })
+        .catch(function (err) {
+            return callback(err);
+        });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
