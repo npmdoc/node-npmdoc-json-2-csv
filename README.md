@@ -1,4 +1,7 @@
-# api documentation for  [json-2-csv (v2.1.0)](https://github.com/mrodrig/json-2-csv)  [![npm package](https://img.shields.io/npm/v/npmdoc-json-2-csv.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-json-2-csv) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-json-2-csv.svg)](https://travis-ci.org/npmdoc/node-npmdoc-json-2-csv)
+# npmdoc-json-2-csv
+
+#### basic api documentation for  [json-2-csv (v2.1.0)](https://github.com/mrodrig/json-2-csv)  [![npm package](https://img.shields.io/npm/v/npmdoc-json-2-csv.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-json-2-csv) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-json-2-csv.svg)](https://travis-ci.org/npmdoc/node-npmdoc-json-2-csv)
+
 #### A JSON to CSV and CSV to JSON converter that natively supports sub-documents and auto-generates the CSV heading.
 
 [![NPM](https://nodei.co/npm/json-2-csv.png?downloads=true&downloadRank=true&stars=true)](https://www.npmjs.com/package/json-2-csv)
@@ -74,7 +77,8 @@
         "coverage": "istanbul cover ./node_modules/.bin/_mocha -- -R spec",
         "test": "mocha test/tests.js"
     },
-    "version": "2.1.0"
+    "version": "2.1.0",
+    "bin": {}
 }
 ```
 
