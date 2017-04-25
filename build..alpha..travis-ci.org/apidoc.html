@@ -93,19 +93,6 @@
 
     </ol></li>
 
-    <li class="apidocModuleLi"><a href="#apidoc.module.json-2-csv.csv2json">module json-2-csv.csv2json</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.json-2-csv.csv2json.csv2json">
-            function <span class="apidocSignatureSpan">json-2-csv.</span>csv2json
-            <span class="apidocSignatureSpan">(csv, callback, opts)</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
     <li class="apidocModuleLi"><a href="#apidoc.module.json-2-csv.csv_2_json">module json-2-csv.csv_2_json</a><ol>
 
         <li>
@@ -113,19 +100,6 @@
             <a class="apidocElementLiA" href="#apidoc.element.json-2-csv.csv_2_json.csv2json">
             function <span class="apidocSignatureSpan">json-2-csv.csv_2_json.</span>csv2json
             <span class="apidocSignatureSpan">(opts, data, callback)</span>
-            </a>
-
-        </li>
-
-    </ol></li>
-
-    <li class="apidocModuleLi"><a href="#apidoc.module.json-2-csv.json2csv">module json-2-csv.json2csv</a><ol>
-
-        <li>
-
-            <a class="apidocElementLiA" href="#apidoc.element.json-2-csv.json2csv.json2csv">
-            function <span class="apidocSignatureSpan">json-2-csv.</span>json2csv
-            <span class="apidocSignatureSpan">(array, callback, opts)</span>
             </a>
 
         </li>
@@ -174,7 +148,21 @@
         }
     });
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+            callback = func;
+        }
+
+        buildOptions(opts, function (err, options) { // Build the options
+            if (err) {
+                return callback(err);
+            } else {
+                csv2Json.<span class="apidocCodeKeywordSpan">csv2json</span>(options, csv, callback); // Call our internal csv2json
+ function
+            }
+        });
+    }
+};
+...</pre></li>
     </ul>
 
 
@@ -202,32 +190,7 @@
         }
     });
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-
-
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.json-2-csv.csv2json" id="apidoc.module.json-2-csv.csv2json">module json-2-csv.csv2json</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.json-2-csv.csv2json.csv2json" id="apidoc.element.json-2-csv.csv2json.csv2json">
-        function <span class="apidocSignatureSpan">json-2-csv.</span>csv2json
-        <span class="apidocSignatureSpan">(csv, callback, opts)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">csv2json = function (csv, callback, opts) {
-    // If this was promisified (callback and opts are swapped) then fix the argument order.
-    if (_.isObject(callback) &#x26;&#x26; !_.isFunction(callback)) {
-        var func = opts;
-        opts = callback;
+    <li>example usage<pre class="apidocCodePre">...
         callback = func;
     }
 
@@ -235,12 +198,21 @@
         if (err) {
             return callback(err);
         } else {
-            csv2Json.csv2json(options, csv, callback); // Call our internal csv2json function
+            json2Csv.<span class="apidocCodeKeywordSpan">json2csv</span>(options, array, callback); // Call our internal json2csv
+ function
         }
     });
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+},
+
+
+/**
+ * Client accessible csv2json function
+...</pre></li>
     </ul>
+
+
+
+
 
 
 </div>
@@ -277,40 +249,21 @@
         json = convertCSV(lines, callback); // Retrieve the JSON document array
     return callback(null, json); // Send the data back to the caller
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
-    </ul>
-
-
-</div>
-
-<div class="apidocSectionDiv">
-<h1><a href="#apidoc.module.json-2-csv.json2csv" id="apidoc.module.json-2-csv.json2csv">module json-2-csv.json2csv</a></h1>
-
-
-    <h2>
-        <a href="#apidoc.element.json-2-csv.json2csv.json2csv" id="apidoc.element.json-2-csv.json2csv.json2csv">
-        function <span class="apidocSignatureSpan">json-2-csv.</span>json2csv
-        <span class="apidocSignatureSpan">(array, callback, opts)</span>
-        </a>
-    </h2>
-    <ul>
-    <li>description and source-code<pre class="apidocCodePre">json2csv = function (array, callback, opts) {
-    // If this was promisified (callback and opts are swapped) then fix the argument order.
-    if (_.isObject(callback) &#x26;&#x26; !_.isFunction(callback)) {
-        var func = opts;
-        opts = callback;
-        callback = func;
-    }
-
-    buildOptions(opts, function (err, options) { // Build the options
-        if (err) {
-            return callback(err);
-        } else {
-            json2Csv.json2csv(options, array, callback); // Call our internal json2csv function
+    <li>example usage<pre class="apidocCodePre">...
+            callback = func;
         }
-    });
-}</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+
+        buildOptions(opts, function (err, options) { // Build the options
+            if (err) {
+                return callback(err);
+            } else {
+                csv2Json.<span class="apidocCodeKeywordSpan">csv2json</span>(options, csv, callback); // Call our internal csv2json
+ function
+            }
+        });
+    }
+};
+...</pre></li>
     </ul>
 
 
@@ -376,7 +329,24 @@
             return callback(err);
         });
 }</pre></li>
-    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+        callback = func;
+    }
+
+    buildOptions(opts, function (err, options) { // Build the options
+        if (err) {
+            return callback(err);
+        } else {
+            json2Csv.<span class="apidocCodeKeywordSpan">json2csv</span>(options, array, callback); // Call our internal json2csv
+ function
+        }
+    });
+},
+
+
+/**
+ * Client accessible csv2json function
+...</pre></li>
     </ul>
 
 
